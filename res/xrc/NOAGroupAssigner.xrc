@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+  <object class="wxDialog" name="dlgNoaGroupAssigner">
+    <style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLIP_CHILDREN</style>
+    <size>640,400</size>
+    <title>NOA Group Assigner</title>
+    <centered>1</centered>
+    <object class="wxBoxSizer">
+      <orient>wxVERTICAL</orient>
+      <object class="sizeritem">
+        <option>0</option>
+        <flag>wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxGridSizer">
+          <rows>0</rows>
+          <cols>4</cols>
+          <vgap>0</vgap>
+          <hgap>0</hgap>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag></flag>
+            <border>5</border>
+            <object class="wxStaticText" name="m_staticText10">
+              <label></label>
+              <wrap>-1</wrap>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxStaticText" name="m_staticText11">
+              <label>Nude (no pushup)</label>
+              <wrap>-1</wrap>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxStaticText" name="m_staticText12">
+              <label>Outfit (pushup)</label>
+              <wrap>-1</wrap>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxStaticText" name="m_staticText13">
+              <label>Armor (flat pushup)</label>
+              <wrap>-1</wrap>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxStaticText" name="m_staticText14">
+              <label>Select Presets</label>
+              <wrap>-1</wrap>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxComboBox" name="m_comboPresetNude">
+              <value>(Nude Preset)</value>
+              <content />
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxComboBox" name="m_comboPresetOutfit">
+              <value>(Outfit Preset)</value>
+              <content />
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxComboBox" name="m_comboPresetArmor">
+              <value>(Armor Preset)</value>
+              <content />
+            </object>
+          </object>
+        </object>
+      </object>
+      <object class="sizeritem">
+        <option>0</option>
+        <flag>wxEXPAND | wxALL</flag>
+        <border>5</border>
+        <object class="wxStaticLine" name="m_staticline1">
+          <style>wxLI_HORIZONTAL</style>
+        </object>
+      </object>
+      <object class="sizeritem">
+        <option>1</option>
+        <flag>wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxScrolledWindow" name="m_scrollWindow">
+          <style>wxVSCROLL</style>
+          <scrollrate>5,5</scrollrate>
+          <object class="wxFlexGridSizer">
+            <rows>0</rows>
+            <cols>5</cols>
+            <vgap>0</vgap>
+            <hgap>0</hgap>
+            <growablecols></growablecols>
+            <growablerows></growablerows>
+          </object>
+        </object>
+      </object>
+      <object class="sizeritem">
+        <option>0</option>
+        <flag>wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxBoxSizer">
+          <orient>wxHORIZONTAL</orient>
+          <object class="sizeritem">
+            <option>1</option>
+            <flag>wxALL|wxEXPAND</flag>
+            <border>5</border>
+            <object class="wxStaticText" name="m_staticText16">
+              <style>wxALIGN_LEFT</style>
+              <label>NOA Groups File:</label>
+              <wrap>-1</wrap>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>3</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxFilePickerCtrl" name="m_filePickerGroups">
+              <value>NOA.xml</value>
+              <message>Select existing NOA Groups file or create new one.</message>
+              <wildcard>*.xml</wildcard>
+              <style>wxFLP_DEFAULT_STYLE</style>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <option>0</option>
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxButton" name="m_buttonReload">
+              <tooltip>Load data from specified NOA groups file.</tooltip>
+              <label>Reload</label>
+              <default>0</default>
+            </object>
+          </object>
+        </object>
+      </object>
+      <object class="sizeritem">
+        <option>0</option>
+        <flag>wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxStdDialogButtonSizer">
+          <object class="button">
+            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+            <border>5</border>
+            <object class="wxButton" name="wxID_SAVE">
+              <label>&amp;Save</label>
+            </object>
+          </object>
+          <object class="button">
+            <flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+            <border>5</border>
+            <object class="wxButton" name="wxID_CANCEL">
+              <label>&amp;Cancel</label>
+            </object>
+          </object>
+        </object>
+      </object>
+    </object>
+  </object>
+</resource>

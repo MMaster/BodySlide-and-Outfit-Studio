@@ -352,6 +352,7 @@
     <None Include="res\xrc\BatchBuild.xrc" />
     <None Include="res\xrc\BodySlide.xrc" />
     <None Include="res\xrc\GroupManager.xrc" />
+    <None Include="res\xrc\NOAGroupAssigner.xrc" />
     <None Include="res\xrc\NormalsGenDlg.xrc" />
     <None Include="res\xrc\SavePreset.xrc" />
     <None Include="res\xrc\Settings.xrc" />
@@ -606,6 +607,7 @@
     <ClInclude Include="src\files\wxDDSImage.h" />
     <ClInclude Include="src\program\BodySlideApp.h" />
     <ClInclude Include="src\program\GroupManager.h" />
+    <ClInclude Include="src\program\NOAGroupAssigner.h" />
     <ClInclude Include="src\program\NormalsGenDialog.h" />
     <ClInclude Include="src\program\PresetSaveDialog.h" />
     <ClInclude Include="src\program\PreviewWindow.h" />
@@ -665,6 +667,7 @@
     <ClCompile Include="src\files\wxDDSImage.cpp" />
     <ClCompile Include="src\program\BodySlideApp.cpp" />
     <ClCompile Include="src\program\GroupManager.cpp" />
+    <ClCompile Include="src\program\NOAGroupAssigner.cpp" />
     <ClCompile Include="src\program\NormalsGenDialog.cpp" />
     <ClCompile Include="src\program\PresetSaveDialog.cpp" />
     <ClCompile Include="src\program\PreviewWindow.cpp" />

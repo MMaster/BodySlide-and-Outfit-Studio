@@ -71,6 +71,7 @@ wxBEGIN_EVENT_TABLE(BodySlideFrame, wxFrame)
 	EVT_BUTTON(XRCID("btnSavePreset"), BodySlideFrame::OnSavePreset)
 	EVT_BUTTON(XRCID("btnSavePresetAs"), BodySlideFrame::OnSavePresetAs)
 	EVT_BUTTON(XRCID("btnGroupManager"), BodySlideFrame::OnGroupManager)
+	EVT_BUTTON(XRCID("btnNOAGroupAssigner"), BodySlideFrame::OnGroupAssigner)
 	EVT_BUTTON(XRCID("btnChooseGroups"), BodySlideFrame::OnChooseGroups)
 	EVT_BUTTON(XRCID("btnRefreshOutfits"), BodySlideFrame::OnRefreshOutfits)
 		
@@ -271,6 +272,15 @@ void BodySlideApp::GetArchiveFiles(std::vector<std::string>& outList) {
 		f = f.AfterLast('\\').MakeLower();
 		if (fsearch.find(f) == fsearch.end())
 			outList.push_back((dataDir + f).ToUTF8().data());
+	}
+}
+
+void BodySlideApp::GetOutputFileSets(std::map<std::string, std::vector<std::string>>& outList)
+{
+	for (auto &path_it : outFileCount) {
+		for (auto outfit : path_it.second) {
+			outList[path_it.first].push_back(outfit);
+		}
 	}
 }
 
@@ -2998,6 +3008,15 @@ void BodySlideFrame::OnGroupManager(wxCommandEvent& WXUNUSED(event)) {
 
 	GroupManager gm(this, outfits);
 	gm.ShowModal();
+	app->LoadPresets("");
+}
+
+void BodySlideFrame::OnGroupAssigner(wxCommandEvent& WXUNUSED(event)) {
+	std::vector<std::string> outfits;
+	app->GetFilteredOutfits(outfits);
+
+	NOAGroupAssigner ga(this, outfits, app);
+	ga.ShowModal();
 	app->LoadPresets("");
 }
 

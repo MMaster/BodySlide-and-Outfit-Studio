@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "PreviewWindow.h"
 #include "PresetSaveDialog.h"
 #include "GroupManager.h"
+#include "NOAGroupAssigner.h"
 #include "../components/SliderData.h"
 #include "../components/SliderManager.h"
 #include "../components/SliderGroup.h"
@@ -116,6 +117,7 @@ public:
 
 	void InitArchives();
 	void GetArchiveFiles(std::vector<std::string>& outList);
+	void GetOutputFileSets(std::map<std::string, std::vector<std::string>> &outList);
 
 	void LoadData();
 	void CharHook(wxKeyEvent& event) {
@@ -161,6 +163,10 @@ public:
 	int GetFilteredOutfits(std::vector<std::string>& outList);
 
 	void LoadPresets(const std::string& sliderSet);
+	void GetPresetNames(std::vector<std::string>& outNames) {
+		sliderManager.GetPresetNames(outNames);
+	}
+
 	void PopulatePresetList(const std::string& select);
 	void PopulateOutfitList(const std::string& select);
 	void DisplayActiveSet();
@@ -318,6 +324,8 @@ private:
 	void OnSavePreset(wxCommandEvent& event);
 	void OnSavePresetAs(wxCommandEvent& event);
 	void OnGroupManager(wxCommandEvent& event);
+
+	void OnGroupAssigner(wxCommandEvent & event);
 
 	void OnPreview(wxCommandEvent& event);
 	void OnHighToLow(wxCommandEvent& event);

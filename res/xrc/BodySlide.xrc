@@ -275,6 +275,17 @@
 										<option>0</option>
 										<flag>wxALIGN_CENTER|wxALL</flag>
 										<border>5</border>
+										<object class="wxButton" name="btnNOAGroupAssigner">
+											<fg>wxSYS_COLOUR_BTNTEXT</fg>
+											<tooltip>Opens the NOA (nude/outfit/armor) Group Assigner where you can assign outfits (filtered by outfit and group filter) to those 3 groups and solve conflicts (with updating preview).</tooltip>
+										<label>NOA Group Assigner</label>
+										</object>
+									</object>
+									
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER|wxALL</flag>
+										<border>5</border>
 										<object class="wxButton" name="btnBuildBatch">
 											<fg>wxSYS_COLOUR_BTNTEXT</fg>
 											<tooltip>Build multiple outfits using the currently active slider values.\n\nHold CTRL = Build to custom directory\nHold ALT = Delete from output directory</tooltip>
