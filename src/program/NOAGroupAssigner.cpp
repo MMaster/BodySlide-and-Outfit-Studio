@@ -134,6 +134,10 @@ void NOAGroupAssigner::ReloadUI() {
 	wxLogMessage("NOA ReloadUI");
 	int idx = 0;
 	for (auto &cb : choiceBoxesOutfits) {
+		checkNude[idx]->SetValue(false);
+		checkOutfit[idx]->SetValue(false);
+		checkArmor[idx]->SetValue(false);
+
 		wxArrayString choiceOutfits = cb->GetStrings();
 		for (wxString outfit : choiceOutfits) {
 
@@ -174,7 +178,33 @@ void NOAGroupAssigner::ReloadUI() {
 			}
 		}
 		if (!checkNude[idx]->IsChecked() && !checkOutfit[idx]->IsChecked() && !checkArmor[idx]->IsChecked()) {
-			SetCheckboxes(idx, true, false, false);
+			wxString output = cb->GetLabel();
+
+			size_t last_slash = output.find_last_of('\\');
+			wxString part = output.substr(last_slash + 1).MakeLower();
+			if (part.Contains("_arm") ||
+				part.Contains("_leg") ||
+				part.StartsWith("toros_") ||
+				part.Contains("arm_f") ||
+				part.Contains("leg_f") ||
+				part.Contains("torso") ||
+				part.Contains("arml") ||
+				part.Contains("armr") ||
+				part.Contains("legl") ||
+				part.Contains("legr") ||
+				part.Contains("helmet") ||
+				part.StartsWith("heavy") ||
+				part.StartsWith("chest") ||
+				part.StartsWith("farmor")
+				)
+				SetCheckboxes(idx, false, false, true);
+			else
+				SetCheckboxes(idx, true, false, false);
+
+			cb->SetBackgroundColour(wxColour(255, 200, 200));
+		}
+		else {
+			cb->SetBackgroundColour(checkNude[idx]->GetBackgroundColour());
 		}
 		idx++;
 	}
@@ -210,7 +240,6 @@ void NOAGroupAssigner::SaveGroup() {
 
 		// add selected outfit to correct group
 		AddGroupsMember(idx);
-		idx++;
 	}
 
 	SliderSetGroupFile groupFile;
@@ -230,6 +259,24 @@ void NOAGroupAssigner::SaveGroup() {
 void NOAGroupAssigner::OnGroupChange(wxFileDirPickerEvent& event) {
 	wxFileName fileInfo(event.GetPath());
 	fileName = fileInfo.GetFullPath();
+
+	std::string groupName;
+
+	size_t lastdot = fileName.find_last_of(".");
+	if (lastdot == std::string::npos)
+		groupName = fileName;
+	else
+		groupName = fileName.substr(0, lastdot);
+
+	size_t lastslash = groupName.find_last_of("\\");
+	if (lastslash != std::string::npos)
+		groupName = groupName.substr(lastslash + 1);
+
+	XRCCTRL(*this, "m_staticText10", wxStaticText)->SetLabel("Group: " + groupName);
+
+	groupNameNude = groupName + " (nude)";
+	groupNameOutfit = groupName + " (outfit)";
+	groupNameArmor = groupName + " (armor)";
 }
 
 void NOAGroupAssigner::OnPresetNudeChange(wxCommandEvent &)
@@ -339,23 +386,6 @@ void NOAGroupAssigner::OnReload(wxCommandEvent& WXUNUSED(event)) {
 
 	groupMembers.clear();
 
-	std::string groupName;
-
-	size_t lastdot = fileName.find_last_of(".");
-	if (lastdot == std::string::npos)
-		groupName = fileName;
-	else
-		groupName = fileName.substr(0, lastdot);
-
-	size_t lastslash = groupName.find_last_of("\\");
-	if (lastslash != std::string::npos)
-		groupName = groupName.substr(lastslash + 1);
-
-	XRCCTRL(*this, "m_staticText10", wxStaticText)->SetLabel("Group: " + groupName);
-
-	groupNameNude = groupName + " (nude)";
-	groupNameOutfit = groupName + " (outfit)";
-	groupNameArmor = groupName + " (armor)";
 
 	// Fill group member map
 	std::vector<std::string> groupNames;
